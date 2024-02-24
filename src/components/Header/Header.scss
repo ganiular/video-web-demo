@@ -75,3 +75,10 @@
         }
     }
 }
+
+@include desktop {
+    .header {
+        width: 80%;
+        margin: auto;
+    }
+}
