@@ -1,0 +1,63 @@
+@import '../../styles/partials/variable';
+@import '../../styles/partials/mixins';
+
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 16px;
+
+    &__logo {
+        margin: 16px;
+    }
+
+    &__nav {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 16px;
+        width: 100%;
+
+        .primary-button {
+            order: 1;
+        }
+    }
+
+    &__search-field {
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        flex-grow: 1;
+        gap: 8px;
+        padding: 12px;
+        background-color: $alabaster-color;
+        border-radius: 4px;
+        outline: 1px solid $mercury-color;
+
+        img {
+            width: 18px;
+            height: 18px;
+        }
+
+        &:active,
+        &:focus-within {
+            outline: 2px solid $blue-color;
+        }
+    }
+
+    &__search-bar {
+        flex-grow: 1;
+        border: none;
+        outline: none;
+        background-color: transparent;
+    }
+}
+
+@include tablet {
+    .header {
+        &__search-field {
+            padding: 16px;
+        }
+    }
+}

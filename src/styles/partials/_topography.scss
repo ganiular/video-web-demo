@@ -1,0 +1,88 @@
+@font-face {
+    font-family: 'AvenirNextRegular';
+    src: url('../../assets/fonts/AvenirNextLTPro-Regular.otf') format(''),
+        url('../../assets/fonts/alternative_files/AvenirNextLTPro.ttf') format('');
+}
+
+@font-face {
+    font-family: 'AvenirNextBold';
+    src: url('../../assets/fonts/AvenirNextLTPro-Bold.otf') format(''),
+        url('../../assets/fonts/alternative_files/AvenirNextLTProBold.ttf') format('');
+}
+
+@font-face {
+    font-family: 'AvenirNextDemi';
+    src: url('../../assets/fonts/AvenirNextLTPro-Demi.otf') format(''),
+        url('../../assets/fonts/alternative_files/AvenirNextLTProDemi.ttf') format('');
+}
+
+h1,
+.page-header {
+    font-family: 'AvenirNextBold';
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 32px;
+}
+
+h2,
+.section-header {
+    font-family: 'AvenirNextBold';
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 20px;
+}
+
+h3,
+.subheader {
+    font-family: 'AvenirNextBold';
+    font-weight: 700;
+    font-size: 13px;
+    line-height: 18px;
+}
+
+p {
+    font-family: 'AvenirNextRegular';
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 18px;
+}
+
+label,
+button {
+    font-family: 'AvenirNextBold';
+    font-weight: 700;
+    font-size: 10px;
+    line-height: 20px;
+}
+
+@include tablet {
+
+    h1,
+    .page-header {
+        font-size: 33px;
+        line-height: 44px;
+    }
+
+    h2,
+    .section-header {
+        font-size: 12px;
+        line-height: 20px;
+    }
+
+    h3,
+    .subheader {
+        font-size: 14px;
+        line-height: 22px;
+    }
+
+    p {
+        font-size: 14px;
+        line-height: 22px;
+    }
+
+    label,
+    button {
+        font-size: 12px;
+        line-height: 20px;
+    }
+}

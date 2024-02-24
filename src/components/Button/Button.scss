@@ -1,0 +1,31 @@
+@import '../../styles/partials/variable';
+@import '../../styles/partials/mixins';
+
+.primary-button {
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    color: $white-color;
+    background-color: $blue-color;
+    border-radius: 4px;
+    height: 40px;
+    width: 100%;
+    border: none;
+
+    img {
+        position: absolute;
+        left: 8px;
+    }
+
+    &:active {
+        background-color: $blue-dark-color;
+    }
+}
+
+@include tablet {
+    .primary__button {
+        width: 150px;
+        padding: 0 32px;
+    }
+}
