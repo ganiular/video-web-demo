@@ -1,15 +1,7 @@
 import viewsIcon from '../../assets/icons/views.svg';
 import likesIcon from '../../assets/icons/likes.svg';
 import './VideoDetail.scss';
-
-const formatDate = (timestamp) => {
-    const date = new Date(timestamp);
-    const day = date.getDate().toString().padStart(2, '0');
-    const month = (date.getMonth() + 1).toString().padStart(2, '0');
-    const year = date.getFullYear();
-
-    return `${day}/${month}/${year}`;
-}
+import { formatDate } from '../../utils/time';
 
 function VideoDetail({ data }) {
     return (
@@ -27,7 +19,7 @@ function VideoDetail({ data }) {
                 </div>
             </div>
             <div className='divider'></div>
-
+            <p className="video-detail__description">{data.description}</p>
         </div>
     )
 }
