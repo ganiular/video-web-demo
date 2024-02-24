@@ -7,14 +7,14 @@ import Avater from '../Avater/Avater';
 
 function Header() {
     return (
-        <div className='header'>
+        <header className='header'>
             <a href="/"><img className='header__logo' src={logo} alt='BrainFlix logo' /></a>
             <div className='header__nav'>
                 <div className="header__search-field"><img src={searchIcon} alt='Search icon' /><input className='header__search-bar' type='search' placeholder='Search' /></div>
                 <UplaodButton />
                 <Avater image={profileImage} />
             </div>
-        </div>
+        </header>
     )
 }
 
