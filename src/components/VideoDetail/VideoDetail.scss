@@ -1,13 +1,18 @@
 @import '../../styles/partials/variable';
+@import '../../styles/partials/mixins';
 
 .video-detail {
-    padding: 0 16px;
+    padding: 24px 16px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    &__title {
+        margin: 0;
+    }
 
     &__tile {
         display: flex;
-        border-top: 1px solid $mercury-color;
-        border-bottom: 1px solid $mercury-color;
-        padding: 16px 0;
         color: $silver-color;
 
         &-item {
@@ -21,5 +26,19 @@
     &__channel {
         margin: 0;
         color: $black-color;
+    }
+}
+
+@include tablet {
+    .video-detail {
+        &__tile {
+            justify-content: space-between;
+
+            &-item {
+                flex-direction: row;
+                flex-grow: 0;
+                align-items: center;
+            }
+        }
     }
 }

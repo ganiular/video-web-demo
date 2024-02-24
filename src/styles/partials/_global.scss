@@ -1,0 +1,16 @@
+@import './variable';
+@import './mixins';
+
+.divider {
+    width: 100%;
+    height: 1px;
+    background-color: $mercury-color;
+}
+
+@include tablet {
+    .divider {
+        &.mobile {
+            display: none;
+        }
+    }
+}
