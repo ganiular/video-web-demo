@@ -56,8 +56,23 @@
 
 @include tablet {
     .header {
+        flex-direction: row;
+        justify-content: space-between;
+
         &__search-field {
-            padding: 16px;
+            padding: 0 16px;
+            width: 240px;
+        }
+
+        &__nav {
+            flex-wrap: nowrap;
+            align-items: stretch;
+            width: auto;
+
+
+            .primary-button {
+                order: 0;
+            }
         }
     }
 }
