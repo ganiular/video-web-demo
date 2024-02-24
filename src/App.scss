@@ -1,3 +1,9 @@
 @import './styles/partials/variable';
 @import './styles/partials/mixins';
 @import './styles/partials/topography';
+
+body {
+    margin: 0;
+    padding: 0;
+    color: $black-color;
+}

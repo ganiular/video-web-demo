@@ -1,0 +1,12 @@
+@import '../../styles/partials/variable';
+
+.video {
+    background-color: $black-dark-color;
+
+    &__player {
+        display: block;
+        margin: auto;
+        aspect-ratio: 16/9;
+        max-width: 100%;
+    }
+}

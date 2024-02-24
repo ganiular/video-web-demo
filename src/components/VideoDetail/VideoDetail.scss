@@ -1,0 +1,25 @@
+@import '../../styles/partials/variable';
+
+.video-detail {
+    padding: 0 16px;
+
+    &__tile {
+        display: flex;
+        border-top: 1px solid $mercury-color;
+        border-bottom: 1px solid $mercury-color;
+        padding: 16px 0;
+        color: $silver-color;
+
+        &-item {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+    }
+
+    &__channel {
+        margin: 0;
+        color: $black-color;
+    }
+}
