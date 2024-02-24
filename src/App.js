@@ -15,10 +15,15 @@ function App() {
     <div className="App">
       <Header />
       <Video data={videoDetail} />
-      <article>
-        <VideoDetail data={videoDetail} />
-        <VideoComments comments={videoDetail.comments} />
-      </article>
+      <main>
+        <article>
+          <VideoDetail data={videoDetail} />
+          <VideoComments comments={videoDetail.comments} />
+        </article>
+        <aside>
+
+        </aside>
+      </main>
     </div>
   );
 }
