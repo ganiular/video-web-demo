@@ -36,4 +36,13 @@
     .videos {
         padding: 36px 24px 24px;
     }
+
+    .video-item {
+        margin-bottom: 24px;
+
+        &__image {
+            width: 120px;
+            min-width: 120px;
+        }
+    }
 }
