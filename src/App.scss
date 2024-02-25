@@ -8,3 +8,21 @@ body {
     padding: 0;
     color: $black-color;
 }
+
+@include desktop {
+    main {
+        display: flex;
+        flex-direction: row;
+        width: 80%;
+        margin: auto;
+    }
+
+    article {
+        width: 60%;
+        border-right: 1px solid $mercury-color;
+    }
+
+    aside {
+        width: 40%;
+    }
+}

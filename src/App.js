@@ -20,10 +20,6 @@ function App() {
     return video.id !== currentSelectedVideo;
   })
 
-  // const updateSelectedVideo = (id) => {
-  //   setCurrentSelectedVideo(id);
-  // }
-
   return (
     <div className="App">
       <Header />
