@@ -35,6 +35,8 @@
 
 @include tablet {
     .video-detail {
+        padding: 36px 24px 24px;
+
         &__tile {
             justify-content: space-between;
 
@@ -44,5 +46,11 @@
                 align-items: center;
             }
         }
+    }
+}
+
+@include desktop {
+    .video-detail {
+        padding: 36px 24px 24px;
     }
 }

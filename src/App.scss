@@ -9,6 +9,12 @@ body {
     color: $black-color;
 }
 
+@include tablet {
+    aside {
+        width: 40%;
+    }
+}
+
 @include desktop {
     main {
         display: flex;
@@ -18,11 +24,11 @@ body {
     }
 
     article {
-        width: 60%;
+        width: 65%;
         border-right: 1px solid $mercury-color;
     }
 
     aside {
-        width: 40%;
+        width: 35%;
     }
 }

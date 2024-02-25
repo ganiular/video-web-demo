@@ -1,4 +1,5 @@
 @import '../../styles/partials/variable';
+@import '../../styles/partials/mixins';
 
 .comments {
     display: flex;
@@ -25,10 +26,14 @@
             align-items: center;
         }
 
-        &__author {}
-
         &__date {
             color: $silver-color;
         }
+    }
+}
+
+@include tablet {
+    .comments {
+        padding: 0 24px;
     }
 }
