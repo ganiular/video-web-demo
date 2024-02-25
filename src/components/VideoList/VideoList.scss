@@ -1,0 +1,34 @@
+@import '../../styles/partials/variable';
+
+.videos {
+    padding: 24px 16px 16px;
+
+    &__head {
+        color: $silver-color;
+        padding-bottom: 16px;
+    }
+}
+
+.video-item {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    margin-bottom: 16px;
+    cursor: pointer;
+
+    &__image {
+        width: 150px;
+        aspect-ratio: 16/9;
+        border-radius: 4px;
+    }
+
+    &__context {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    &__title {}
+
+    &__author {}
+}

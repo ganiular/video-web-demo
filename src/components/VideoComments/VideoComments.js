@@ -10,7 +10,7 @@ function VideoComment({ comment }) {
                 <Avater />
                 <div className="comment__context">
                     <div className="comment__head">
-                        <h2 className="comment__author">{comment.name}</h2>
+                        <h3 className="comment__author">{comment.name}</h3>
                         <div className="comment__date">{formatDate(comment.timestamp)}</div>
                     </div>
                     <p className="comment__body">{comment.comment}</p>
