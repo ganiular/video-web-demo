@@ -3,7 +3,7 @@ import Avater from '../Avater/Avater';
 import CommentButton from '../Button/CommentButton';
 import './Form.scss';
 
-function CommentForm({ addComment }) {
+function CommentForm() {
     function handleSubmit(event) {
         event.preventDefault();
 
