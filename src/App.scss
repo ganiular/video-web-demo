@@ -9,6 +9,14 @@ body {
     color: $black-color;
 }
 
+a,
+a:visited,
+a:hover,
+a:active {
+    text-decoration: none;
+    color: $black-color;
+}
+
 @include tablet {
     aside {
         width: 40%;
