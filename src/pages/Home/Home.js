@@ -23,7 +23,7 @@ function HomePage() {
         return video.id !== currentSelectedVideo;
     })
 
-    // Update selectedVideo anytime videoId changes
+    // Update currentSelectedVideo anytime videoId changes
     // That is when user click on a video on the list
     useEffect(() => {
         setCurrentSelectedVideo(videoId);
