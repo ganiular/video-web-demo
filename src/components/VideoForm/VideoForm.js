@@ -5,8 +5,12 @@ import CancelButton from '../Button/CancelButton';
 import './VideoForm.scss';
 
 function VideoForm() {
+    function handleSubmit(event) {
+        event.preventDefault();
+    }
+
     return (
-        <form className='video-form'>
+        <form className='video-form' onSubmit={handleSubmit}>
             <div className='divider not-mobile'></div>
             <div class="video-form__fields">
                 <div className='video-form__field'>
