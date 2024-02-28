@@ -10,6 +10,7 @@ function App() {
   return (
     <BrowserRouter className="App">
       <Header />
+      <div className='divider'></div>
       <Routes>
         <Route path='/' element={<HomePage />} />
         <Route path='/videos/:videoId' element={<HomePage />} />

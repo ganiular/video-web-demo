@@ -4,7 +4,6 @@ import './VideoUpload.scss';
 function VideoUploadPage() {
     return (
         <main className='upload-page'>
-            <div className='divider'></div>
             <section className='upload-section'>
                 <h1 className='upload-section__header'>Upload Video</h1>
                 <VideoForm />
