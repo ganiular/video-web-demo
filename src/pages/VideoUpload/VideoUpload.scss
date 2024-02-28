@@ -13,3 +13,9 @@
         padding: 36px 24px 24px;
     }
 }
+
+@include desktop {
+    .upload-page {
+        flex-direction: column;
+    }
+}
