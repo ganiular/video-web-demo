@@ -21,6 +21,7 @@ function VideoForm() {
                     <textarea className='video-form__text' placeholder="Add a description to your video"></textarea>
                 </div>
             </div>
+            <div className='divider not-mobile'></div>
             <div className='video-form__actions'>
                 <TextAndIconButton icon={publishIcon} text="PUBLISH" />
                 <CancelButton />

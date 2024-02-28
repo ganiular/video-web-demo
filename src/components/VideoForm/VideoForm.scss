@@ -31,7 +31,7 @@
         border-radius: 4px;
         border: none;
         outline: 1px solid $mercury-color;
-        resize: vertical;
+
 
         &:active,
         &:focus-within {
@@ -51,5 +51,23 @@
 
     label {
         color: $silver-color;
+    }
+
+    textarea {
+        resize: vertical;
+        height: 100px;
+    }
+}
+
+@include tablet {
+    .video-form {
+
+        &__image {
+            width: 360px;
+        }
+
+        &__actions {
+            flex-direction: row-reverse;
+        }
     }
 }

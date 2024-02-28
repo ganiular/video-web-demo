@@ -1,7 +1,15 @@
-.upload-section {
-    padding: 24px 16px 16px;
+@import '../../styles/partials/variable';
+@import '../../styles/partials/mixins';
 
-    &__header {
-        padding-bottom: 16px;
+.upload-section {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 24px 16px 16px;
+}
+
+@include tablet {
+    .upload-section {
+        padding: 36px 24px 24px;
     }
 }

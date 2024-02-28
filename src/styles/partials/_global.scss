@@ -11,12 +11,20 @@
     width: 100%;
     height: 1px;
     background-color: $mercury-color;
+
+    &.not-mobile {
+        display: none;
+    }
 }
 
 @include tablet {
     .divider {
         &.mobile {
             display: none;
+        }
+
+        &.not-mobile {
+            display: block;
         }
     }
 }
