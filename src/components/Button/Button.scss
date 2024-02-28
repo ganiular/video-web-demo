@@ -27,8 +27,19 @@
     }
 }
 
+.secondary-button {
+    border-radius: 4px;
+    height: 40px;
+    width: 100%;
+    border: none;
+    color: $blue-color !important;
+    background-color: $white-color;
+}
+
 @include tablet {
-    .primary-button {
+
+    .primary-button,
+    .secondary-button {
         width: 150px;
         padding: 0 32px;
     }

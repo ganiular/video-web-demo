@@ -1,0 +1,55 @@
+@import '../..//styles/partials/variable';
+@import '../../styles/partials/mixins';
+
+.video-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    &__field {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    &__image {
+        width: 100%;
+        background-color: $mercury-color;
+        aspect-ratio: 16/9;
+        border-radius: 4px;
+    }
+
+    &__set {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    &__text {
+        padding: 12px;
+        background-color: $alabaster-color;
+        border-radius: 4px;
+        border: none;
+        outline: 1px solid $mercury-color;
+        resize: vertical;
+
+        &:active,
+        &:focus-within {
+            outline: 2px solid $blue-color;
+        }
+
+        &.error {
+            outline: 1px solid #D22D2D;
+        }
+    }
+
+    &__actions {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    label {
+        color: $silver-color;
+    }
+}

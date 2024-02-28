@@ -1,8 +1,16 @@
+import VideoForm from '../../components/VideoForm/VideoForm';
+import './VideoUpload.scss';
+
 function VideoUploadPage() {
     return (
-        <h1>Video Upload Page</h1>
+        <main>
+            <div className='divider'></div>
+            <section className='upload-section'>
+                <h1 className='upload-section__header'>Upload Video</h1>
+                <VideoForm />
+            </section>
+        </main>
     )
 }
-
 
 export default VideoUploadPage;
