@@ -4,7 +4,7 @@ import Video from '../../components/Video/Video';
 import VideoDetail from '../../components/VideoDetail/VideoDetail';
 import VideoComments from '../../components/VideoComments/VideoComments';
 import VideoList from '../../components/VideoList/VideoList';
-import siteApi from '../../BrainFlixApi';
+import axios from 'axios';
 
 function HomePage() {
     const params = useParams();
@@ -12,16 +12,19 @@ function HomePage() {
     const [currentSelectedVideo, setCurrentSelectedVideo] = useState();
     const [videoId, setVideoId] = useState(params.videoId);
 
+    const baseUrl = 'https://unit-3-project-api-0a5620414506.herokuapp.com/';
+    const apiKey = ''
+
     // Get Videos
     useEffect(() => {
         const getVideos = async () => {
             try {
-                const data = await siteApi.getVideos()
-                setVideos(data);
+                const res = await axios.get(`${baseUrl}videos?api_key=${apiKey}`)
+                setVideos(res.data);
 
                 // if video id is not set, select the first video as default
-                if (!videoId && data.length > 0) {
-                    setVideoId(data[0].id);
+                if (!videoId && res.data.length > 0) {
+                    setVideoId(res.data[0].id);
                 }
             } catch (error) {
                 console.error(error);
@@ -35,8 +38,8 @@ function HomePage() {
     useEffect(() => {
         const getVideoById = async () => {
             try {
-                const data = await siteApi.getVideoById(videoId)
-                setCurrentSelectedVideo(data)
+                const res = await axios.get(`${baseUrl}videos/${videoId}`)
+                setCurrentSelectedVideo(res.data)
             } catch (error) {
                 console.error(error);
             }
