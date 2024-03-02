@@ -17,6 +17,14 @@
     }
 }
 
+.loading {
+    display: flex;
+    justify-content: center;
+    padding: 36px;
+    color: $silver-color;
+    font-size: 22px;
+}
+
 @include tablet {
     .divider {
         &.mobile {
