@@ -1,9 +1,9 @@
 import './Video.scss';
 
-function Video({ data }) {
+function Video({ video, image }) {
     return (
         <section className="video">
-            <video className="video__player" controls src={data.video} poster={data.image} />
+            <video className="video__player" controls src={video} poster={image} />
         </section>
     )
 }

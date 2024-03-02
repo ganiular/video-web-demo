@@ -4,41 +4,73 @@ import Video from '../../components/Video/Video';
 import VideoDetail from '../../components/VideoDetail/VideoDetail';
 import VideoComments from '../../components/VideoComments/VideoComments';
 import VideoList from '../../components/VideoList/VideoList';
-import videoDetails from '../../data/video-details.json';
-import videos from '../../data/videos.json';
+import siteApi from '../../BrainFlixApi';
 
 function HomePage() {
     const params = useParams();
+    const [videos, setVideos] = useState([])
+    const [currentSelectedVideo, setCurrentSelectedVideo] = useState();
+    const [videoId, setVideoId] = useState(params.videoId);
 
-    // Get videoId from params if exists otherwise use first video in the list as default
-    const videoId = params.videoId || videoDetails[0].id;
+    // Get Videos
+    useEffect(() => {
+        const getVideos = async () => {
+            try {
+                const data = await siteApi.getVideos()
+                setVideos(data);
 
-    const [currentSelectedVideo, setCurrentSelectedVideo] = useState(videoId);
+                // if video id is not set, select the first video as default
+                if (!videoId && data.length > 0) {
+                    setVideoId(data[0].id);
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        }
 
-    const selectedVideoData = videoDetails.find(video => {
-        return video.id === currentSelectedVideo;
-    });
+        getVideos()
+    }, [])
 
+    // Get video details by vidoe id
+    useEffect(() => {
+        const getVideoById = async () => {
+            try {
+                const data = await siteApi.getVideoById(videoId)
+                setCurrentSelectedVideo(data)
+            } catch (error) {
+                console.error(error);
+            }
+        }
+
+        if (videoId) {
+            getVideoById();
+        }
+    }, [videoId])
+
+    // Update videoId for every params.videoId change 
+    useEffect(() => {
+        setVideoId(params.videoId)
+    }, [params.videoId])
+
+    // Filter out selected video from list of next vidoes
     const nextVideos = videos.filter(video => {
-        return video.id !== currentSelectedVideo;
+        return video.id !== videoId;
     })
 
-    // Update currentSelectedVideo anytime videoId changes
-    // That is when user click on a video on the list
-    useEffect(() => {
-        setCurrentSelectedVideo(videoId);
-    }, [videoId])
+    if (!currentSelectedVideo) {
+        return <div className='loading'>Loading...</div>;
+    }
 
     return (
         <>
-            <Video data={selectedVideoData} />
+            <Video video={currentSelectedVideo.video} image={currentSelectedVideo.image} />
             <main>
                 <article>
-                    <VideoDetail data={selectedVideoData} />
-                    <VideoComments comments={selectedVideoData.comments} />
+                    <VideoDetail data={currentSelectedVideo} />
+                    <VideoComments comments={currentSelectedVideo.comments} />
                 </article>
                 <aside>
-                    <VideoList videos={nextVideos} setCurrentSelectedVideo={setCurrentSelectedVideo} />
+                    <VideoList videos={nextVideos} />
                 </aside>
             </main>
         </>

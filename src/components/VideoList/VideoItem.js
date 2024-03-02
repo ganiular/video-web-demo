@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-export function VideoItem({ video, setCurrentSelectedVideo }) {
+export function VideoItem({ video }) {
     return (
         <Link to={`/videos/${video.id}`} className="video-item">
             <img className="video-item__image" src={video.image} alt={video.title} />
