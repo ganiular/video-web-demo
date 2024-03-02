@@ -1,7 +1,7 @@
 import { formatDateAgo } from "../../utils/time";
 import Avater from "../Avater/Avater";
 
-export function VideoComment({ comment }) {
+export function VideoComment({ comment, deleteComment }) {
     return (
         <>
             <div className="comment">
@@ -12,6 +12,9 @@ export function VideoComment({ comment }) {
                         <div className="comment__date">{formatDateAgo(comment.timestamp)}</div>
                     </div>
                     <p className="comment__body">{comment.comment}</p>
+                    <div className="comment__actions">
+                        <button className="comment__button" onClick={() => deleteComment(comment.id)}>DELETE</button>
+                    </div>
                 </div>
             </div>
             <div className="divider"></div>

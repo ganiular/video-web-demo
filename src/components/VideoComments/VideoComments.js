@@ -20,12 +20,21 @@ function VideoComments(props) {
         }
     }
 
+    const deleteComment = async (commentId) => {
+        try {
+            await axios.delete(`${baseUrl}videos/${props.videoId}/comments/${commentId}?api_key=${apiKey}`);
+            setComments(prev => prev.filter(comment => comment.id !== commentId))
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
     return (
         <div className="comments">
             <h2>{comments.length} Comments</h2>
             <CommentForm postComment={postComment} />
             <div className="divider"></div>
-            {comments.map(comment => <VideoComment comment={comment} key={comment.id} />)}
+            {comments.map(comment => <VideoComment comment={comment} key={comment.id} deleteComment={deleteComment} />)}
         </div>
     )
 }

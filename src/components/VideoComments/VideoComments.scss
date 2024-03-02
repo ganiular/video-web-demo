@@ -29,11 +29,36 @@
         &__date {
             color: $silver-color;
         }
+
+        &__actions {
+            display: flex;
+            flex-direction: row;
+            justify-content: right;
+        }
+
+        &__button {
+            background-color: $alabaster-color;
+            color: $silver-color;
+            border: none;
+            outline: none;
+            width: 100%;
+            padding: 8px;
+
+            &:hover {
+                background-color: $mercury-color;
+            }
+        }
     }
 }
 
 @include tablet {
     .comments {
         padding: 0 24px;
+
+        .comment {
+            &__button {
+                width: 120px;
+            }
+        }
     }
 }
