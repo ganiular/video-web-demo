@@ -13,7 +13,7 @@ function HomePage() {
     const [videoId, setVideoId] = useState(params.videoId);
 
     const baseUrl = 'https://unit-3-project-api-0a5620414506.herokuapp.com/';
-    const apiKey = '51352841-4603-45f1-bd56-9f0fd6dd9391'
+    const apiKey = ''
 
     // Get Videos
     useEffect(() => {
