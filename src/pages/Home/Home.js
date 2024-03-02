@@ -13,7 +13,7 @@ function HomePage() {
     const [videoId, setVideoId] = useState(params.videoId);
 
     const baseUrl = 'https://unit-3-project-api-0a5620414506.herokuapp.com/';
-    const apiKey = ''
+    const apiKey = '51352841-4603-45f1-bd56-9f0fd6dd9391'
 
     // Get Videos
     useEffect(() => {
@@ -38,7 +38,7 @@ function HomePage() {
     useEffect(() => {
         const getVideoById = async () => {
             try {
-                const res = await axios.get(`${baseUrl}videos/${videoId}`)
+                const res = await axios.get(`${baseUrl}videos/${videoId}?api_key=${apiKey}`)
                 setCurrentSelectedVideo(res.data)
             } catch (error) {
                 console.error(error);
@@ -55,6 +55,7 @@ function HomePage() {
         setVideoId(params.videoId)
     }, [params.videoId])
 
+
     // Filter out selected video from list of next vidoes
     const nextVideos = videos.filter(video => {
         return video.id !== videoId;
@@ -70,7 +71,7 @@ function HomePage() {
             <main>
                 <article>
                     <VideoDetail data={currentSelectedVideo} />
-                    <VideoComments comments={currentSelectedVideo.comments} />
+                    <VideoComments comments={currentSelectedVideo.comments} videoId={videoId} />
                 </article>
                 <aside>
                     <VideoList videos={nextVideos} />

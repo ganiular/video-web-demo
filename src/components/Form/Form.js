@@ -3,17 +3,20 @@ import Avater from '../Avater/Avater';
 import CommentButton from '../Button/CommentButton';
 import './Form.scss';
 
-function CommentForm() {
-    function handleSubmit(event) {
+function CommentForm({ postComment }) {
+    async function handleSubmit(event) {
         event.preventDefault();
 
         const form = event.target;
-        const commentInput = form.comment;
+        const data = {
+            name: '',
+            comment: form.comment.value
+        }
 
-        if (!commentInput.value) {
-            commentInput.classList.add('error');
+        if (!data.comment) {
+            form.comment.classList.add('error');
         } else {
-            console.log(commentInput.value);
+            await postComment(data);
             form.reset();
         }
     }
