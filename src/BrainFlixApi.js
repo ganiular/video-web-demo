@@ -3,13 +3,13 @@ import axios from "axios";
 class BrainFlixApi {
     constructor(api_key) {
         this.api_key = api_key;
-        this.base_url = 'http://127.0.0.1:8080';
-        // this.base_url = 'https://unit-3-project-api-0a5620414506.herokuapp.com/';
+        this.base_url = 'https://unit-3-project-api-0a5620414506.herokuapp.com/';
+        this.local_url = 'http://localhost:8080/';
     }
 
     async getVideos() {
         try {
-            const res = await axios.get(`${this.base_url}videos?api_key=${this.api_key}`)
+            const res = await axios.get(`${this.local_url}videos?api_key=${this.api_key}`)
             return res.data;
         } catch (error) {
             console.error(error);
@@ -19,7 +19,7 @@ class BrainFlixApi {
 
     async getVideoById(videoId) {
         try {
-            const res = await axios.get(`${this.base_url}videos/${videoId}?api_key=${this.api_key}`)
+            const res = await axios.get(`${this.local_url}videos/${videoId}?api_key=${this.api_key}`)
             return res.data;
         } catch (error) {
             console.error(error);
@@ -30,7 +30,7 @@ class BrainFlixApi {
     async postVideo(video) {
         try {
             const headers = { 'Content-Type': 'application/json' }
-            const res = await axios.post(`${this.base_url}videos?api_key=${this.api_key}`, video, { headers })
+            const res = await axios.post(`${this.local_url}videos?api_key=${this.api_key}`, video, { headers })
             return res.data;
         } catch (error) {
             console.error(error);
