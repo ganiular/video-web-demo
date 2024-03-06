@@ -6,27 +6,41 @@ import CancelButton from '../Button/CancelButton';
 import Message from '../Message/Message';
 import './VideoForm.scss';
 import { useNavigate } from 'react-router-dom';
+import siteApi from '../../BrainFlixApi';
 
 function VideoForm() {
     const navigate = useNavigate()
     const [uplaodStatus, setUploadStatus] = useState('');
 
-    function handleSubmit(event) {
+    async function handleSubmit(event) {
         event.preventDefault();
 
         const form = event.target;
+        const video = {
+            title: form.title.value,
+            description: form.description.value,
+            channel: '',
+            image: 'image0.jpg'
+        }
 
         if (!form.title.value) {
             form.title.classList.add('error');
         } else if (!form.description.value) {
             form.description.classList.add('error');
         } else {
-            setUploadStatus('success');
+            try {
+                const res = await siteApi.postVideo(video);
+                console.log(res);
+                setUploadStatus('success');
 
-            // Redirect to home after 3 seconds of success
-            setTimeout(() => {
-                navigate("/")
-            }, 3000);
+                // Redirect to home after 3 seconds of success
+                setTimeout(() => {
+                    navigate("/")
+                }, 3000);
+            } catch (error) {
+                console.error(error);
+                setUploadStatus('error')
+            }
         }
     }
 
@@ -38,7 +52,7 @@ function VideoForm() {
         <div>
             <form className='video-form' onSubmit={handleSubmit}>
                 <div className='divider not-mobile'></div>
-                <div class="video-form__fields">
+                <div className="video-form__fields">
                     <div className='video-form__field'>
                         <label>VIDEO THUMBNAIL</label>
                         <img className='video-form__image' src={videoThumbnail} alt="Video thumbnail" />

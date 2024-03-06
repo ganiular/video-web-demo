@@ -6,14 +6,12 @@ import axios from "axios";
 
 function VideoComments(props) {
     const [comments, setComments] = useState(props.comments);
-
-    const baseUrl = 'https://unit-3-project-api-0a5620414506.herokuapp.com/';
-    const apiKey = ''
+    const baseUrl = process.env.REACT_APP_BASE_URL;
 
     const postComment = async (comment) => {
         try {
             const headers = { 'Content-Type': 'application/json' }
-            const res = await axios.post(`${baseUrl}videos/${props.videoId}/comments?api_key=${apiKey}`, comment, { headers });
+            const res = await axios.post(`${baseUrl}videos/${props.videoId}/comments`, comment, { headers });
             setComments(prev => [res.data, ...prev])
         } catch (error) {
             console.error(error);
@@ -22,7 +20,7 @@ function VideoComments(props) {
 
     const deleteComment = async (commentId) => {
         try {
-            await axios.delete(`${baseUrl}videos/${props.videoId}/comments/${commentId}?api_key=${apiKey}`);
+            await axios.delete(`${baseUrl}videos/${props.videoId}/comments/${commentId}`);
             setComments(prev => prev.filter(comment => comment.id !== commentId))
         } catch (error) {
             console.error(error);

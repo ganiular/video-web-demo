@@ -11,15 +11,13 @@ function HomePage() {
     const [videos, setVideos] = useState([])
     const [currentSelectedVideo, setCurrentSelectedVideo] = useState();
     const [videoId, setVideoId] = useState(params.videoId);
+    const baseUrl = process.env.REACT_APP_BASE_URL;
 
-    const baseUrl = 'https://unit-3-project-api-0a5620414506.herokuapp.com/';
-    const apiKey = ''
-
-    // Get Videos
+    // Get Videos 
     useEffect(() => {
         const getVideos = async () => {
             try {
-                const res = await axios.get(`${baseUrl}videos?api_key=${apiKey}`)
+                const res = await axios.get(`${baseUrl}videos`)
                 setVideos(res.data);
 
                 // if video id is not set, select the first video as default
@@ -32,13 +30,14 @@ function HomePage() {
         }
 
         getVideos()
+        // eslint-disable-next-line
     }, [])
 
     // Get video details by vidoe id
     useEffect(() => {
         const getVideoById = async () => {
             try {
-                const res = await axios.get(`${baseUrl}videos/${videoId}?api_key=${apiKey}`)
+                const res = await axios.get(`${baseUrl}videos/${videoId}`)
                 setCurrentSelectedVideo(res.data)
             } catch (error) {
                 console.error(error);
@@ -48,7 +47,7 @@ function HomePage() {
         if (videoId) {
             getVideoById();
         }
-    }, [videoId])
+    }, [videoId, baseUrl])
 
     // Update videoId for every params.videoId change 
     useEffect(() => {
