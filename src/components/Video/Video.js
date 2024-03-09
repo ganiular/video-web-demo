@@ -2,6 +2,7 @@ import playIcon from '../../assets/icons/play.svg';
 import pauseIcon from '../../assets/icons/pause.svg';
 import fullscreenIcon from '../../assets/icons/fullscreen.svg';
 import volumeUpIcon from '../../assets/icons/volume_up.svg';
+import volumeOffIcon from '../../assets/icons/volume_off.svg';
 import './Video.scss';
 import { useEffect, useRef, useState } from 'react';
 
@@ -9,6 +10,7 @@ function Video({ video, image }) {
     const [isPlaying, setIsPlaying] = useState(false);
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
+    const [isMuted, setIsMuted] = useState(false);
     const videoRef = useRef();
 
     function handlePlay() {
@@ -21,6 +23,11 @@ function Video({ video, image }) {
             setIsPlaying(true)
             videoRef.current.play()
         }
+    }
+
+    function handleMute() {
+        videoRef.current.muted = !isMuted;
+        setIsMuted(!isMuted);
     }
 
     useEffect(() => {
@@ -54,7 +61,7 @@ function Video({ video, image }) {
                 </div>
                 <div>
                     <button><img src={fullscreenIcon} alt='Full screen' /></button>
-                    <button><img src={volumeUpIcon} alt='Volume up' /></button>
+                    <button onClick={handleMute}><img src={isMuted ? volumeUpIcon : volumeOffIcon} alt={isMuted ? 'On sound' : 'Off sound'} /></button>
                 </div>
             </div>
         </section>
