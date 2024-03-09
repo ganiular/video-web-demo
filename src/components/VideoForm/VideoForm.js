@@ -1,16 +1,17 @@
 import { useState } from 'react';
 import publishIcon from '../../assets/icons/publish.svg';
-import videoThumbnail from '../../assets/images/Upload-video-preview.jpg';
 import TextAndIconButton from "../../components/Button/TextAndIconButton";
 import CancelButton from '../Button/CancelButton';
 import Message from '../Message/Message';
 import './VideoForm.scss';
 import { useNavigate } from 'react-router-dom';
-import siteApi from '../../BrainFlixApi';
+import axios from 'axios';
 
 function VideoForm() {
     const navigate = useNavigate()
     const [uplaodStatus, setUploadStatus] = useState('');
+    const baseUrl = process.env.REACT_APP_BASE_URL;
+    const videoThumbnailUrl = `${baseUrl}images/upload-video-thumbnail.jpg`
 
     async function handleSubmit(event) {
         event.preventDefault();
@@ -29,8 +30,9 @@ function VideoForm() {
             form.description.classList.add('error');
         } else {
             try {
-                const res = await siteApi.postVideo(video);
-                console.log(res);
+                const headers = { 'Content-Type': 'application/json' }
+                const res = await axios.post(`${baseUrl}videos`, video, { headers })
+                console.log(res.data);
                 setUploadStatus('success');
 
                 // Redirect to home after 3 seconds of success
@@ -55,7 +57,7 @@ function VideoForm() {
                 <div className="video-form__fields">
                     <div className='video-form__field'>
                         <label>VIDEO THUMBNAIL</label>
-                        <img className='video-form__image' src={videoThumbnail} alt="Video thumbnail" />
+                        <img className='video-form__image' src={videoThumbnailUrl} alt="Video thumbnail" />
                     </div>
                     <div className='video-form__set'>
                         <div className='video-form__field'>
