@@ -51,6 +51,9 @@ function VideoForm() {
 
     return (
         <div>
+            {uplaodStatus === 'success' && <Message message="Video uploaded successfully" type="success" />}
+            {uplaodStatus === 'error' && <Message message="Video uploading failed" type="error" />}
+
             <form className='video-form' onSubmit={handleSubmit}>
                 <div className='divider not-mobile'></div>
                 <div className="video-form__fields">
@@ -81,9 +84,6 @@ function VideoForm() {
                     <CancelButton />
                 </div>
             </form>
-
-            {uplaodStatus === 'success' && <Message message="Video uploaded successfully" type="success" />}
-            {uplaodStatus === 'error' && <Message message="Video uploading failed" type="error" />}
         </div>
     )
 }
