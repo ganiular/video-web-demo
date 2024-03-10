@@ -1,6 +1,7 @@
 import playIcon from '../../assets/icons/play.svg';
 import pauseIcon from '../../assets/icons/pause.svg';
 import fullscreenIcon from '../../assets/icons/fullscreen.svg';
+import fullscreenCloseIcon from '../../assets/icons/close_fullscreen.svg';
 import volumeUpIcon from '../../assets/icons/volume_up.svg';
 import volumeOffIcon from '../../assets/icons/volume_off.svg';
 import './Video.scss';
@@ -11,6 +12,7 @@ function Video({ video, image }) {
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
     const [isMuted, setIsMuted] = useState(false);
+    const [isFull, setIsFull] = useState(false);
     const videoRef = useRef();
 
     function handlePlay() {
@@ -28,6 +30,10 @@ function Video({ video, image }) {
     function handleMute() {
         videoRef.current.muted = !isMuted;
         setIsMuted(!isMuted);
+    }
+
+    function handleFullScreen() {
+        setIsFull(!isFull);
     }
 
     useEffect(() => {
@@ -52,16 +58,20 @@ function Video({ video, image }) {
 
     return (
         <section className="video">
-            <video ref={videoRef} className="video__player" src={video} poster={image} />
-            <div>
-                <button onClick={handlePlay}><img src={isPlaying ? pauseIcon : playIcon} alt={isPlaying ? 'Pause' : 'Play'} /></button>
-                <div>
-                    <div></div>
-                    <div>{currentTime.toFixed(2)}/{duration.toFixed(2)}</div>
-                </div>
-                <div>
-                    <button><img src={fullscreenIcon} alt='Full screen' /></button>
-                    <button onClick={handleMute}><img src={isMuted ? volumeUpIcon : volumeOffIcon} alt={isMuted ? 'On sound' : 'Off sound'} /></button>
+            <div className='video__content'>
+                <video ref={videoRef} className="video__player" src={video} poster={image} />
+                <div className='control'>
+                    <button className='control__button' onClick={handlePlay}><img src={isPlaying ? pauseIcon : playIcon} alt={isPlaying ? 'Pause' : 'Play'} /></button>
+                    <div className='control__bar'>
+                        <div className='control__seek'>
+                            <div className='control__progress'></div>
+                        </div>
+                        <div className='control__time'>{currentTime.toFixed(2)} / {duration.toFixed(2)}</div>
+                    </div>
+                    <div className='control__actions'>
+                        <button className='control__button' onClick={handleFullScreen}><img src={isFull ? fullscreenCloseIcon : fullscreenIcon} alt={isFull ? 'Minimize' : 'Maximazie'} /></button>
+                        <button className='control__button' onClick={handleMute}><img src={isMuted ? volumeUpIcon : volumeOffIcon} alt={isMuted ? 'On sound' : 'Off sound'} /></button>
+                    </div>
                 </div>
             </div>
         </section>
