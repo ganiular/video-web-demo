@@ -15,6 +15,7 @@ function Video({ video, image }) {
     const [isMuted, setIsMuted] = useState(false);
     const [isFull, setIsFull] = useState(false);
     const videoRef = useRef();
+    const screenRef = useRef();
 
     function handlePlay() {
         if (isPlaying) {
@@ -33,8 +34,15 @@ function Video({ video, image }) {
         setIsMuted(!isMuted);
     }
 
-    function handleFullScreen() {
-        setIsFull(!isFull);
+    function handleFullScreen(event) {
+        console.log({ isFull });
+        if (document.fullscreenElement) {
+            document.exitFullscreen();
+            setIsFull(false)
+        } else {
+            videoRef.current.parentElement.requestFullscreen();
+            setIsFull(true)
+        }
     }
 
     useEffect(() => {
@@ -60,7 +68,7 @@ function Video({ video, image }) {
 
     return (
         <section className="video">
-            <div className='video__content'>
+            <div ref={screenRef} className='video__content'>
                 <video ref={videoRef} className="video__player" src={video} poster={image} />
                 <div className='control'>
                     <button className='control__button' onClick={handlePlay}><img src={isPlaying ? pauseIcon : playIcon} alt={isPlaying ? 'Pause' : 'Play'} /></button>

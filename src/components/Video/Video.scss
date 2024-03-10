@@ -5,28 +5,32 @@
     background-color: $black-dark-color;
     display: flex;
     justify-content: center;
+    align-items: center;
 
     &__content {
         position: relative;
+        display: flex;
+        align-items: center;
     }
 
     &__player {
         aspect-ratio: 16/9;
         max-width: 100%;
         max-height: 60vh;
+        width: 100%;
     }
 }
 
 .control {
     display: flex;
     flex-direction: row;
-    gap: 16px;
+    gap: 8px;
     width: 100%;
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
-    padding: 16px;
+    padding: 8px;
 
     &__button {
         border: none;
@@ -36,13 +40,13 @@
     &__bar {
         flex-grow: 1;
         display: flex;
-        gap: 16px;
+        gap: 8px;
         align-items: center;
     }
 
     &__seek {
         flex-grow: 1;
-        background-color: blanchedalmond;
+        background-color: #00000096;
         height: 4px;
         border-radius: 2px;
     }
@@ -55,18 +59,18 @@
 
     &__time {
         color: white;
-        font-size: 14px;
+        font-size: 11px;
     }
 
     &__actions {
         display: flex;
         align-items: center;
-        gap: 16px;
+        gap: 8px;
     }
 
     >* {
         border-radius: 4px;
-        padding: 8px 16px;
+        padding: 4px 16px;
         background-color: #0000006c;
     }
 }
@@ -75,6 +79,27 @@
     .video {
         &__player {
             max-height: 70vh;
+        }
+    }
+
+    .control {
+        gap: 16px;
+        padding: 16px;
+
+        &__bar {
+            gap: 16px;
+        }
+
+        &__time {
+            font-size: 14px;
+        }
+
+        &__actions {
+            gap: 16px;
+        }
+
+        >* {
+            padding: 4px 16px;
         }
     }
 }
