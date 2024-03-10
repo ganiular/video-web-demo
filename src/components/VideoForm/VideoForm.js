@@ -18,21 +18,19 @@ function VideoForm() {
         event.preventDefault();
 
         const form = event.target;
-        const video = {
-            title: form.title.value,
-            description: form.description.value,
-            channel: '',
-            image: 'image0.jpg'
-        }
+        const formData = new FormData(form);
+        formData.append('channel', 'Mary Channel TV')
 
-        if (!form.title.value) {
+        if (form.image.files.length < 1) {
+            form.image.classList.add('error');
+        } else if (!form.title.value) {
             form.title.classList.add('error');
         } else if (!form.description.value) {
             form.description.classList.add('error');
         } else {
             try {
-                const headers = { 'Content-Type': 'application/json' }
-                const res = await axios.post(`${baseUrl}videos`, video, { headers })
+                const headers = { 'Content-Type': 'multipart/form-data' }
+                const res = await axios.post(`${baseUrl}videos`, formData, { headers })
                 console.log(res.data);
                 setUploadStatus('success');
 
@@ -57,13 +55,13 @@ function VideoForm() {
                 <div className='divider not-mobile'></div>
                 <div className="video-form__fields">
                     <div className='video-form__field'>
-                        <label htmlFor='poster'>VIDEO THUMBNAIL</label>
-                        <div class="video-form__poster">
+                        <label htmlFor='image'>VIDEO THUMBNAIL</label>
+                        <div className="video-form__poster">
                             <img className='video-form__image' src={videoThumbnailUrl} alt="Video thumbnail" />
-                            <label htmlFor='poster' className='video-form__upload'>
+                            <label htmlFor='image' className='video-form__upload'>
                                 <img src={uploadIcon} alt='Upload' />
                                 <div>UPLOAD</div></label>
-                            <input type='file' name='poster' />
+                            <input type='file' name='image' id='image' accept='image/*' />
                         </div>
                     </div>
                     <div className='video-form__set'>

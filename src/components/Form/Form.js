@@ -9,7 +9,7 @@ function CommentForm({ postComment }) {
 
         const form = event.target;
         const data = {
-            name: '',
+            name: 'Mary Oje',
             comment: form.comment.value
         }
 
