@@ -6,6 +6,7 @@ import Message from '../Message/Message';
 import './VideoForm.scss';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import uploadIcon from '../../assets/icons/upload.svg';
 
 function VideoForm() {
     const navigate = useNavigate()
@@ -56,8 +57,14 @@ function VideoForm() {
                 <div className='divider not-mobile'></div>
                 <div className="video-form__fields">
                     <div className='video-form__field'>
-                        <label>VIDEO THUMBNAIL</label>
-                        <img className='video-form__image' src={videoThumbnailUrl} alt="Video thumbnail" />
+                        <label htmlFor='poster'>VIDEO THUMBNAIL</label>
+                        <div class="video-form__poster">
+                            <img className='video-form__image' src={videoThumbnailUrl} alt="Video thumbnail" />
+                            <label htmlFor='poster' className='video-form__upload'>
+                                <img src={uploadIcon} alt='Upload' />
+                                <div>UPLOAD</div></label>
+                            <input type='file' name='poster' />
+                        </div>
                     </div>
                     <div className='video-form__set'>
                         <div className='video-form__field'>
