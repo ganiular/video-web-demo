@@ -11,6 +11,7 @@ function Video({ video, image }) {
     const [isPlaying, setIsPlaying] = useState(false);
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
+    const [progress, setProgress] = useState(0);
     const [isMuted, setIsMuted] = useState(false);
     const [isFull, setIsFull] = useState(false);
     const videoRef = useRef();
@@ -41,6 +42,7 @@ function Video({ video, image }) {
 
         const handleTimeUpdate = () => {
             setCurrentTime(videoElement.currentTime / 100);
+            setProgress(videoElement.currentTime / videoElement.duration * 100)
         };
 
         const handleDurationChange = () => {
@@ -64,7 +66,7 @@ function Video({ video, image }) {
                     <button className='control__button' onClick={handlePlay}><img src={isPlaying ? pauseIcon : playIcon} alt={isPlaying ? 'Pause' : 'Play'} /></button>
                     <div className='control__bar'>
                         <div className='control__seek'>
-                            <div className='control__progress'></div>
+                            <div className='control__progress' style={{ width: `${progress}%` }}></div>
                         </div>
                         <div className='control__time'>{currentTime.toFixed(2)} / {duration.toFixed(2)}</div>
                     </div>
