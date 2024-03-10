@@ -23,6 +23,17 @@
         }
     }
 
+    &__likes {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        gap: 8px;
+
+        &:hover {
+            background-color: $mercury-color;
+        }
+    }
+
     &__channel {
         margin: 0;
         color: $black-color;
