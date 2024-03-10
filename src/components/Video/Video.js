@@ -15,7 +15,6 @@ function Video({ video, image }) {
     const [isMuted, setIsMuted] = useState(false);
     const [isFull, setIsFull] = useState(false);
     const videoRef = useRef();
-    const screenRef = useRef();
 
     function handlePlay() {
         if (isPlaying) {
@@ -35,13 +34,10 @@ function Video({ video, image }) {
     }
 
     function handleFullScreen(event) {
-        console.log({ isFull });
         if (document.fullscreenElement) {
             document.exitFullscreen();
-            setIsFull(false)
         } else {
             videoRef.current.parentElement.requestFullscreen();
-            setIsFull(true)
         }
     }
 
@@ -57,18 +53,24 @@ function Video({ video, image }) {
             setDuration(videoElement.duration / 100);
         };
 
+        const handleFullScreenChange = () => {
+            setIsFull(value => !value);
+        }
+
         videoElement.addEventListener('timeupdate', handleTimeUpdate);
         videoElement.addEventListener('durationchange', handleDurationChange);
+        videoElement.parentElement.addEventListener('fullscreenchange', handleFullScreenChange);
 
         return () => {
             videoElement.removeEventListener('timeupdate', handleTimeUpdate);
             videoElement.removeEventListener('durationchange', handleDurationChange);
+            videoElement.parentElement.removeEventListener('fullscreenchange', handleFullScreenChange);
         };
     }, [])
 
     return (
         <section className="video">
-            <div ref={screenRef} className='video__content'>
+            <div className='video__content'>
                 <video ref={videoRef} className="video__player" src={video} poster={image} />
                 <div className='control'>
                     <button className='control__button' onClick={handlePlay}><img src={isPlaying ? pauseIcon : playIcon} alt={isPlaying ? 'Pause' : 'Play'} /></button>
