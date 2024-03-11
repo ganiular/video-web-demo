@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CommentForm from "../Form/Form";
 import { VideoComment } from "./VideoComment";
 import './VideoComments.scss';
@@ -26,6 +26,10 @@ function VideoComments(props) {
             console.error(error);
         }
     }
+
+    useEffect(() => {
+        setComments(props.comment)
+    }, [props.comment])
 
     return (
         <div className="comments">
