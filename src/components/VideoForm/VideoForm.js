@@ -36,7 +36,7 @@ function VideoForm() {
 
                 // Redirect to home after 3 seconds of success
                 setTimeout(() => {
-                    navigate("/")
+                    navigate("/videos/" + res.data.id)
                 }, 3000);
             } catch (error) {
                 console.error(error);
