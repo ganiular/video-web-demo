@@ -8,9 +8,10 @@ import axios from 'axios';
 
 function HomePage() {
     const params = useParams();
-    const [videos, setVideos] = useState([])
+    const [videos, setVideos] = useState()
     const [currentSelectedVideo, setCurrentSelectedVideo] = useState();
     const [videoId, setVideoId] = useState(params.videoId);
+    const [isVideoNotFound, setIsVideoNotFound] = useState(false);
     const baseUrl = process.env.REACT_APP_BASE_URL;
 
     // Get Videos 
@@ -41,6 +42,9 @@ function HomePage() {
                 setCurrentSelectedVideo(res.data)
             } catch (error) {
                 console.error(error);
+                if (error.response.status === 404) {
+                    setIsVideoNotFound(true);
+                }
             }
         }
 
@@ -54,15 +58,22 @@ function HomePage() {
         setVideoId(params.videoId)
     }, [params.videoId])
 
+    if (isVideoNotFound) {
+        return <div className='loading'>Video Not Found</div>;
+    }
+
+    if (!currentSelectedVideo || !videos) {
+        return <div className='loading'>Loading...</div>;
+    }
+
+    if (videos.length === 0) {
+        return <div className='loading'>No video as been uploaded</div>;
+    }
 
     // Filter out selected video from list of next vidoes
     const nextVideos = videos.filter(video => {
         return video.id !== videoId;
     })
-
-    if (!currentSelectedVideo) {
-        return <div className='loading'>Loading...</div>;
-    }
 
     return (
         <>
