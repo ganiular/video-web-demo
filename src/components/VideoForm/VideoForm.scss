@@ -43,7 +43,7 @@
         border-radius: 16px;
         display: flex;
         align-items: center;
-        gap: 8px
+        gap: 8px;
     }
 
     &__set {
@@ -92,6 +92,10 @@
 
     input[type=file] {
         display: none;
+
+        &.error~* {
+            outline: 1px solid #D22D2D;
+        }
     }
 }
 

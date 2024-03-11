@@ -12,7 +12,25 @@ function VideoForm() {
     const navigate = useNavigate()
     const [uplaodStatus, setUploadStatus] = useState('');
     const baseUrl = process.env.REACT_APP_BASE_URL;
-    const videoThumbnailUrl = `${baseUrl}images/upload-video-thumbnail.jpg`
+    const [videoThumbnailUrl, setVideoThumbnailUrl] = useState(`${baseUrl}images/upload-video-thumbnail.jpg`);
+
+    function handleUploadChange(event) {
+        const file = event.target.files[0];
+
+        if (file) {
+            const reader = new FileReader();
+
+            reader.onload = (e) => {
+                const imageDataURL = e.target.result;
+                setVideoThumbnailUrl(imageDataURL);
+            };
+
+            reader.readAsDataURL(file);
+        }
+
+        // remove error indicator
+        event.target.classList.remove('error');
+    }
 
     async function handleSubmit(event) {
         event.preventDefault();
@@ -60,11 +78,11 @@ function VideoForm() {
                     <div className='video-form__field'>
                         <label htmlFor='image'>VIDEO THUMBNAIL</label>
                         <div className="video-form__poster">
+                            <input type='file' name='image' id='image' accept='image/*' onChange={handleUploadChange} />
                             <img className='video-form__image' src={videoThumbnailUrl} alt="Video thumbnail" />
                             <label htmlFor='image' className='video-form__upload'>
                                 <img src={uploadIcon} alt='Upload' />
                                 <div>UPLOAD</div></label>
-                            <input type='file' name='image' id='image' accept='image/*' />
                         </div>
                     </div>
                     <div className='video-form__set'>
