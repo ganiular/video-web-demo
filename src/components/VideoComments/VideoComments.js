@@ -28,8 +28,8 @@ function VideoComments(props) {
     }
 
     useEffect(() => {
-        setComments(props.comment)
-    }, [props.comment])
+        setComments(props.comments)
+    }, [props.comments])
 
     return (
         <div className="comments">
