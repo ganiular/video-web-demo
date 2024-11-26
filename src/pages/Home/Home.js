@@ -5,6 +5,7 @@ import VideoDetail from '../../components/VideoDetail/VideoDetail';
 import VideoComments from '../../components/VideoComments/VideoComments';
 import VideoList from '../../components/VideoList/VideoList';
 import axios from 'axios';
+import Loader from '../../components/Loader/Loader';
 
 function HomePage() {
     const params = useParams();
@@ -63,7 +64,7 @@ function HomePage() {
     }
 
     if (!currentSelectedVideo || !videos) {
-        return <div className='loading'>Loading...</div>;
+        return <Loader verticalSpace='40vh' />;
     }
 
     if (videos.length === 0) {
