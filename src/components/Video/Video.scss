@@ -44,17 +44,8 @@
         align-items: center;
     }
 
-    &__seek {
-        flex-grow: 1;
-        background-color: #00000096;
-        height: 4px;
-        border-radius: 2px;
-    }
-
     &__progress {
-        background-color: blue;
-        height: 100%;
-        width: 0px;
+        flex-grow: 1;
     }
 
     &__time {

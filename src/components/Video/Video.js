@@ -69,20 +69,25 @@ function Video({ video, image }) {
     }, [])
 
     return (
-        <section className="video">
+        <section className="video" aria-label='Video player'>
             <div className='video__content'>
-                <video ref={videoRef} className="video__player" src={video} poster={image} />
+                <video ref={videoRef} className="video__player" src={video} poster={image}>
+                    <track kind="captions" srcLang="en" src="captions.vtt" label="English captions" />
+                </video>
+
                 <div className='control'>
-                    <button className='control__button' onClick={handlePlay}><img src={isPlaying ? pauseIcon : playIcon} alt={isPlaying ? 'Pause' : 'Play'} /></button>
+                    <button className='control__button' onClick={handlePlay} aria-label={isPlaying ? 'Pause video' : 'Play video'}>
+                        <img src={isPlaying ? pauseIcon : playIcon} alt='' />
+                    </button>
                     <div className='control__bar'>
-                        <div className='control__seek'>
-                            <div className='control__progress' style={{ width: `${progress}%` }}></div>
-                        </div>
-                        <div className='control__time'>{currentTime.toFixed(2)} / {duration.toFixed(2)}</div>
+
+                        <progress className='control__progress' value={progress} max="100"></progress>
+
+                        <div className='control__time' aria-live="polite">{currentTime.toFixed(2)} / {duration.toFixed(2)}</div>
                     </div>
                     <div className='control__actions'>
-                        <button className='control__button' onClick={handleFullScreen}><img src={isFull ? fullscreenCloseIcon : fullscreenIcon} alt={isFull ? 'Minimize' : 'Maximazie'} /></button>
-                        <button className='control__button' onClick={handleMute}><img src={isMuted ? volumeUpIcon : volumeOffIcon} alt={isMuted ? 'On sound' : 'Off sound'} /></button>
+                        <button className='control__button' onClick={handleFullScreen} aria-label={isFull ? 'Exit fullscreen' : 'Enter fullscreen'}><img src={isFull ? fullscreenCloseIcon : fullscreenIcon} alt='' /></button>
+                        <button className='control__button' onClick={handleMute} aria-label={isMuted ? 'Unmute sound' : 'Mute sound'}><img src={isMuted ? volumeUpIcon : volumeOffIcon} alt='' /></button>
                     </div>
                 </div>
             </div>
