@@ -12,17 +12,15 @@ function Header() {
         <header className='header'>
             <Link to="/"><img className='header__logo' src={logo} alt='BrainFlix logo' /></Link>
             <nav className='header__nav'>
-                <form className="header__search-form" role="search" aria-label="Site search">
-                    <div className="header__search-field">
-                        <img src={searchIcon} alt="Search icon" />
-                        <input
-                            id="search-bar"
-                            className="header__search-bar"
-                            type="search"
-                            placeholder="Search"
-                            aria-label="Search videos"
-                        />
-                    </div>
+                <form className="header__search-form header__search-field" role="search" aria-label="Site search">
+                    <img src={searchIcon} alt="Search icon" />
+                    <input
+                        id="search-bar"
+                        className="header__search-bar"
+                        type="search"
+                        placeholder="Search"
+                        aria-label="Search videos"
+                    />
                 </form>
                 <UplaodButton />
                 <Avater image={profileImage} />
