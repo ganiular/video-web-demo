@@ -5,7 +5,7 @@ import Divider from "../Divider/Divier";
 export function VideoComment({ comment, deleteComment }) {
     return (
         <>
-            <l1 className="comment">
+            <li className="comment">
                 <Avater />
                 <div className="comment__context">
                     <header className="comment__head">
@@ -18,7 +18,7 @@ export function VideoComment({ comment, deleteComment }) {
                             aria-label={`Delete comment by ${comment.name}`}>DELETE</button>
                     </footer>
                 </div>
-            </l1>
+            </li>
             <Divider />
         </>
     );

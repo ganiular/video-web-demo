@@ -31,7 +31,7 @@ function VideoDetail({ data }) {
 
     return (
         <div className='video-detail'>
-            <h1 className="video-detail__title">Tech Trends: {data.title}</h1>
+            <h1 id='video-title' className="video-detail__title">Tech Trends: {data.title}</h1>
             <div className='divider mobile'></div>
             <div className="video-detail__tile">
                 <div className="video-detail__tile-item">

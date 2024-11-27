@@ -42,7 +42,7 @@ function CommentForm({ postComment }) {
             <div className="form__body">
                 <Avater image={profileImage} />
                 <div className='form__fields'>
-                    <div class="form__field">
+                    <div className="form__field">
                         <textarea name='comment' placeholder='Add a new comment' onChange={removeError} id='comment'
                             aria-required="true"
                             aria-describedby={error ? 'comment-error' : undefined}
