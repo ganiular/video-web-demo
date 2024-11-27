@@ -5,9 +5,9 @@ import fullscreenCloseIcon from '../../assets/icons/close_fullscreen.svg';
 import volumeUpIcon from '../../assets/icons/volume_up.svg';
 import volumeOffIcon from '../../assets/icons/volume_off.svg';
 import './Video.scss';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, forwardRef } from 'react';
 
-function Video({ video, image }) {
+const Video = forwardRef(({ video, image }, ref) => {
     const [isPlaying, setIsPlaying] = useState(false);
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
@@ -15,6 +15,13 @@ function Video({ video, image }) {
     const [isMuted, setIsMuted] = useState(false);
     const [isFull, setIsFull] = useState(false);
     const videoRef = useRef();
+
+    // Expose the videoRef to the parent through the forwarded ref
+    useEffect(() => {
+        if (ref) {
+            ref.current = videoRef.current;
+        }
+    }, [ref]);
 
     function handlePlay() {
         if (isPlaying) {
@@ -71,7 +78,7 @@ function Video({ video, image }) {
     return (
         <section className="video" aria-label='Video player'>
             <div className='video__content'>
-                <video ref={videoRef} className="video__player" src={video} poster={image}>
+                <video ref={videoRef} tabIndex={-1} className="video__player" src={video} poster={image}>
                     <track kind="captions" srcLang="en" src="captions.vtt" label="English captions" />
                 </video>
 
@@ -93,6 +100,6 @@ function Video({ video, image }) {
             </div>
         </section>
     )
-}
+});
 
 export default Video;

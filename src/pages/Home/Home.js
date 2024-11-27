@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import Video from '../../components/Video/Video';
 import VideoDetail from '../../components/VideoDetail/VideoDetail';
@@ -14,6 +14,7 @@ function HomePage() {
     const [videoId, setVideoId] = useState(params.videoId);
     const [isVideoNotFound, setIsVideoNotFound] = useState(false);
     const baseUrl = process.env.REACT_APP_BASE_URL;
+    const videoRef = useRef(null);
 
     // Get Videos 
     useEffect(() => {
@@ -59,8 +60,17 @@ function HomePage() {
         setVideoId(params.videoId)
     }, [params.videoId])
 
+    // Focus on the video player when the selected video changes
+    useEffect(() => {
+        if (videoRef.current) {
+            videoRef.current.focus();
+        }
+    }, [currentSelectedVideo]);
+
     if (isVideoNotFound) {
-        return <div className='loading'>Video Not Found</div>;
+        return <div className="loading" tabIndex="-1" aria-live="polite">
+            Video Not Found
+        </div>;
     }
 
     if (!currentSelectedVideo || !videos) {
@@ -78,13 +88,15 @@ function HomePage() {
 
     return (
         <>
-            <Video video={currentSelectedVideo.video} image={currentSelectedVideo.image} />
-            <main>
-                <article>
+            <Video ref={videoRef}
+                video={currentSelectedVideo.video}
+                image={currentSelectedVideo.image} />
+            <main aria-labelledby="video-details-section">
+                <article id="video-details-section" aria-labelledby="video-title">
                     <VideoDetail data={currentSelectedVideo} />
                     <VideoComments comments={currentSelectedVideo.comments} videoId={videoId} />
                 </article>
-                <aside>
+                <aside aria-label="Next videos list">
                     <VideoList videos={nextVideos} />
                 </aside>
             </main>
