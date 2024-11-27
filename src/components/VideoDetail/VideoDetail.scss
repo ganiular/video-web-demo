@@ -28,6 +28,10 @@
         align-items: center;
         cursor: pointer;
         gap: 8px;
+        background-color: $alabaster-color;
+        color: $silver-color;
+        border: none;
+        padding: 8px;
 
         &:hover {
             background-color: $mercury-color;

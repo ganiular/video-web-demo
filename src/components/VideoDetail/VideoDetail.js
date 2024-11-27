@@ -7,15 +7,21 @@ import { useEffect, useState } from 'react';
 
 function VideoDetail({ data }) {
     const [likes, setLikes] = useState(data.likes);
+    const [isLiking, setIsLiking] = useState(false);
     const baseUrl = process.env.REACT_APP_BASE_URL;
 
     async function handleLike() {
+        if (isLiking) return;
+        setIsLiking(true);
+
         try {
             const res = await axios.put(`${baseUrl}videos/${data.id}/likes`);
             console.log(res.data);
             setLikes(res.data.likes);
         } catch (error) {
             console.error(error);
+        } finally {
+            setIsLiking(false);
         }
     }
 
@@ -34,7 +40,10 @@ function VideoDetail({ data }) {
                 </div>
                 <div className="video-detail__tile-item">
                     <div><img src={viewsIcon} alt='Views' /> {data.views}</div>
-                    <div className='video-detail__likes' onClick={handleLike}><img src={likesIcon} alt='Likes' /> {likes}</div>
+                    <button className='video-detail__likes' onClick={handleLike} disabled={isLiking} aria-label={isLiking ? 'Updating likes...' : 'Like video'}>
+                        <img src={likesIcon} alt='' />
+                        <div aria-label='Number of likes'>{likes}</div>
+                    </button>
                 </div>
             </div>
             <div className='divider'></div>
