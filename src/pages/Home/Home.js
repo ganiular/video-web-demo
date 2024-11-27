@@ -44,7 +44,7 @@ function HomePage() {
                 setCurrentSelectedVideo(res.data)
             } catch (error) {
                 console.error(error);
-                if (error.response.status === 404) {
+                if (error.response?.status === 404) {
                     setIsVideoNotFound(true);
                 }
             }
@@ -92,11 +92,11 @@ function HomePage() {
                 video={currentSelectedVideo.video}
                 image={currentSelectedVideo.image} />
             <main aria-labelledby="video-details-section">
-                <article id="video-details-section" aria-labelledby="video-title">
+                <section id="video-details-section" aria-labelledby="video-title">
                     <VideoDetail data={currentSelectedVideo} />
                     <VideoComments comments={currentSelectedVideo.comments} videoId={videoId} />
-                </article>
-                <aside aria-label="Next videos list">
+                </section>
+                <aside aria-label="Next videos list" aria-live="polite">
                     <VideoList videos={nextVideos} />
                 </aside>
             </main>
