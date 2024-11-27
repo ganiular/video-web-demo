@@ -7,6 +7,18 @@
     gap: 16px;
     padding: 0 16px;
 
+    &__list {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    &__empty {
+        text-align: center;
+        color: $silver-color;
+        padding: 16px;
+    }
+
     .comment {
         display: flex;
         flex-direction: row;
@@ -40,7 +52,6 @@
             background-color: $alabaster-color;
             color: $silver-color;
             border: none;
-            outline: none;
             width: 100%;
             padding: 8px;
 

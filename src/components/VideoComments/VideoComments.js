@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import CommentForm from "../Form/Form";
+import CommentForm from "../Form/CommentForm";
 import { VideoComment } from "./VideoComment";
 import './VideoComments.scss';
 import axios from "axios";
+import Divider from "../Divider/Divier";
 
 function VideoComments(props) {
     const [comments, setComments] = useState(props.comments);
@@ -35,8 +36,24 @@ function VideoComments(props) {
         <div className="comments">
             <h2>{comments.length} Comments</h2>
             <CommentForm postComment={postComment} />
-            <div className="divider"></div>
-            {comments.map(comment => <VideoComment comment={comment} key={comment.id} deleteComment={deleteComment} />)}
+
+            {/* Divider for visual separation */}
+            <Divider />
+
+            {/* Comments List */}
+            {comments.length > 0 ? (
+                <ul className="comments__list" aria-live="polite">
+                    {comments.map(comment => (
+                        <VideoComment
+                            comment={comment}
+                            key={comment.id}
+                            deleteComment={deleteComment}
+                        />
+                    ))}
+                </ul>
+            ) : (
+                <p className="comments__empty">No comments yet. Be the first to join the conversation!</p>
+            )}
         </div>
     )
 }

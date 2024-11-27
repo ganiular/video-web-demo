@@ -23,6 +23,17 @@
         gap: 16px;
     }
 
+    &__field {
+        flex-grow: 1;
+        display: flex;
+        gap: 8px;
+        flex-direction: column;
+    }
+
+    &__error {
+        color: #D22D2D;
+    }
+
     textarea {
         flex-grow: 1;
         padding: 12px;
