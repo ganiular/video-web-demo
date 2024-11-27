@@ -11,11 +11,22 @@ function Header() {
     return (
         <header className='header'>
             <Link to="/"><img className='header__logo' src={logo} alt='BrainFlix logo' /></Link>
-            <div className='header__nav'>
-                <div className="header__search-field"><img src={searchIcon} alt='Search icon' /><input className='header__search-bar' type='search' placeholder='Search' /></div>
+            <nav className='header__nav'>
+                <form className="header__search-form" role="search" aria-label="Site search">
+                    <div className="header__search-field">
+                        <img src={searchIcon} alt="Search icon" />
+                        <input
+                            id="search-bar"
+                            className="header__search-bar"
+                            type="search"
+                            placeholder="Search"
+                            aria-label="Search videos"
+                        />
+                    </div>
+                </form>
                 <UplaodButton />
                 <Avater image={profileImage} />
-            </div>
+            </nav>
         </header>
     )
 }

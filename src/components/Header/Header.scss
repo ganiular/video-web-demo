@@ -21,6 +21,10 @@
         }
     }
 
+    &__search-form {
+        display: flex;
+    }
+
     &__search-field {
         display: flex;
         align-items: center;
