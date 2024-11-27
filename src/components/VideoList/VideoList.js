@@ -5,9 +5,11 @@ function VideoList({ videos }) {
     return (
         <div className="videos">
             <h2 className='videos__head'>NEXT VIDEOS</h2>
-            <div>
-                {videos.map(video => <VideoItem key={video.id} video={video} />)}
-            </div>
+            <ul className='video-list'>
+                {videos.map(video => (<li key={video.id}>
+                    <VideoItem video={video} />
+                </li>))}
+            </ul>
         </div>
     )
 }
